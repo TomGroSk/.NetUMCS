@@ -92,5 +92,50 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             globalRectangle.AddRange(globalTrapezoid);
             listBox1.DataSource = globalRectangle;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string text = textBox3.Text;
+            double z = double.Parse(text);
+            Random random = new Random();
+            double exactValue = Math.Pow(100, 4) / 4.0;
+            List<string> globalData = new List<string>();
+            int i = 0;
+
+            while(true)
+            {
+                SingleCount singleCountRectangle = new SingleCount(0, 100, random.Next(10, 100000), AreaType.Rectangle, 0, 1);
+                double rectangleValue = Calculation.CoronaDidIt(singleCountRectangle, x => x * x * x).SingleCountsList.Last().Area;
+                double exactnessRectangle = Math.Abs(exactValue - rectangleValue) / exactValue * 100;
+
+                if (exactnessRectangle > z)
+                {
+                    globalData.Add("Rectangle: ");
+                    globalData.Add(i.ToString());
+                    break;
+                }
+
+                i++;
+            }
+
+            i = 0;
+            while (true)
+            {
+                SingleCount singleCountTrapezoid = new SingleCount(0, 100, random.Next(10, 100000), AreaType.Trapezoid, 0, 1);
+                double trapezoidValue = Calculation.CoronaDidIt(singleCountTrapezoid, x => x * x * x).SingleCountsList.Last().Area;
+                double exactnessTrapezoid = Math.Abs(exactValue - trapezoidValue) / exactValue * 100;
+
+                if (exactnessTrapezoid > z)
+                {
+                    globalData.Add("Trapezoid: ");
+                    globalData.Add(i.ToString());
+                    break;
+                }
+                i++;
+
+            }
+            listBox2.DataSource = globalData;
+
+        }
     }
 }
