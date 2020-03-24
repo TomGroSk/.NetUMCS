@@ -72,12 +72,36 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.listBox5 = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.listBox6 = new System.Windows.Forms.ListBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.listBox7 = new System.Windows.Forms.ListBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.listBox8 = new System.Windows.Forms.ListBox();
+            this.button8 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -469,6 +493,195 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label10);
+            this.panel6.Controls.Add(this.label12);
+            this.panel6.Controls.Add(this.textBox10);
+            this.panel6.Controls.Add(this.textBox12);
+            this.panel6.Controls.Add(this.listBox6);
+            this.panel6.Controls.Add(this.button6);
+            this.panel6.Location = new System.Drawing.Point(31, 60);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(733, 337);
+            this.panel6.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(278, 45);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 13);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "M:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(278, 18);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(17, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "K:";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(303, 42);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(135, 20);
+            this.textBox10.TabIndex = 6;
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(303, 15);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(135, 20);
+            this.textBox12.TabIndex = 5;
+            // 
+            // listBox6
+            // 
+            this.listBox6.FormattingEnabled = true;
+            this.listBox6.Location = new System.Drawing.Point(198, 121);
+            this.listBox6.Name = "listBox6";
+            this.listBox6.Size = new System.Drawing.Size(346, 212);
+            this.listBox6.TabIndex = 4;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(303, 69);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(135, 46);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "Policz";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label13);
+            this.panel7.Controls.Add(this.textBox13);
+            this.panel7.Controls.Add(this.listBox7);
+            this.panel7.Controls.Add(this.button7);
+            this.panel7.Controls.Add(this.label15);
+            this.panel7.Controls.Add(this.label16);
+            this.panel7.Controls.Add(this.textBox15);
+            this.panel7.Controls.Add(this.textBox16);
+            this.panel7.Location = new System.Drawing.Point(31, 60);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(733, 337);
+            this.panel7.TabIndex = 9;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(382, 34);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 13);
+            this.label13.TabIndex = 8;
+            this.label13.Text = "Z:";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(407, 31);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(135, 20);
+            this.textBox13.TabIndex = 6;
+            // 
+            // listBox7
+            // 
+            this.listBox7.FormattingEnabled = true;
+            this.listBox7.Location = new System.Drawing.Point(198, 121);
+            this.listBox7.Name = "listBox7";
+            this.listBox7.Size = new System.Drawing.Size(346, 212);
+            this.listBox7.TabIndex = 4;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(303, 69);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(135, 46);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "Policz";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(173, 46);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(23, 13);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "X2:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(173, 19);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(23, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "X1:";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(198, 43);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(135, 20);
+            this.textBox15.TabIndex = 1;
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(198, 16);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.Size = new System.Drawing.Size(135, 20);
+            this.textBox16.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label14);
+            this.panel8.Controls.Add(this.textBox14);
+            this.panel8.Controls.Add(this.listBox8);
+            this.panel8.Controls.Add(this.button8);
+            this.panel8.Location = new System.Drawing.Point(31, 60);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(733, 337);
+            this.panel8.TabIndex = 9;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(278, 34);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Z:";
+            // 
+            // textBox14
+            // 
+            this.textBox14.Location = new System.Drawing.Point(303, 31);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.Size = new System.Drawing.Size(135, 20);
+            this.textBox14.TabIndex = 6;
+            // 
+            // listBox8
+            // 
+            this.listBox8.FormattingEnabled = true;
+            this.listBox8.Location = new System.Drawing.Point(198, 121);
+            this.listBox8.Name = "listBox8";
+            this.listBox8.Size = new System.Drawing.Size(346, 212);
+            this.listBox8.TabIndex = 4;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(303, 69);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(135, 46);
+            this.button8.TabIndex = 0;
+            this.button8.Text = "Policz";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,6 +692,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel8);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -496,6 +712,12 @@
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,6 +769,27 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.ListBox listBox5;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.ListBox listBox6;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.ListBox listBox7;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.ListBox listBox8;
+        private System.Windows.Forms.Button button8;
     }
 }
 
