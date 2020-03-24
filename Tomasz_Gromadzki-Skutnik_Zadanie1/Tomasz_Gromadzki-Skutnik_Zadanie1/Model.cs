@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
+namespace Tomasz_Gromadzki_Skutnik_Zadanie1
 {
     public enum AreaType
     {
