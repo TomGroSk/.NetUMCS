@@ -16,12 +16,12 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
         }
 
 
-        public static Global calculateIntegral(SingleCount singleCount, Func<double, double> func)
+        public static Global CalculateIntegral(SingleCount singleCount, Func<double, double> func)
         {
             List<SingleCount> singleCountsList = new List<SingleCount>();
             double dx = (singleCount.X2 - singleCount.X1) / singleCount.N;
 
-            for (int i = 1; i < singleCount.N; i++)
+            for (int i = 0; i < singleCount.N; i++)
             {
                 singleCount.CalculationNumber = i;
                 singleCount = SingleCalculation(singleCount, func);
@@ -46,7 +46,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
             while (true)
             {
                 SingleCount singleCountRectangle = new SingleCount(0, 100, random.Next(10, 100000), areaType, 0, 1);
-                double areaValue = Calculation.calculateIntegral(singleCountRectangle, x => x * x * x).SingleCountsList.Last().Area;
+                double areaValue = Calculation.CalculateIntegral(singleCountRectangle, x => x * x * x).SingleCountsList.Last().Area;
                 double exactness = Math.Abs(exactValue - areaValue) / exactValue * 100;
 
                 if (exactness > z)
@@ -65,7 +65,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
             for (int i = 0; i < m; i++)
             {
                 SingleCount singleCount = new SingleCount(0, 100, random.Next(10, 100000), areaType, 0, 1);
-                double areaValue = Calculation.calculateIntegral(singleCount, x => x * x).SingleCountsList.Last().Area;
+                double areaValue = Calculation.CalculateIntegral(singleCount, x => x * x).SingleCountsList.Last().Area;
                 double exactness = Math.Abs(exactValue - areaValue) / exactValue * 100;
 
                 if (exactness <= z)
@@ -85,8 +85,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
             {
                 var tuple = new Tuple<double, double>(random.Next(10, 1000000), random.Next(10, 1000000));
                 SingleCount singleCount = new SingleCount(tuple.Item1, tuple.Item2, n, areaType, 0, 1);
-                double areaValue = Calculation.calculateIntegral(singleCount, x => x * x * x).SingleCountsList.Last().Area;
-                double areaValue2 = Calculation.calculateIntegral(singleCount, x => x * x).SingleCountsList.Last().Area;
+                double areaValue = Calculation.CalculateIntegral(singleCount, x => x * x * x).SingleCountsList.Last().Area;
+                double areaValue2 = Calculation.CalculateIntegral(singleCount, x => x * x).SingleCountsList.Last().Area;
                 double diffValue = (areaValue2 - areaValue);
 
                 if (diffValue < minValue) minValue = diffValue;
@@ -102,7 +102,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
                 for (int j = 0; j < x2; j++)
                 {
                     SingleCount singleCount = new SingleCount(i, j, n, areaType, 0, 1);
-                    double areaValue = Calculation.calculateIntegral(singleCount, x => x * x * x).SingleCountsList.Last().Area;
+                    double areaValue = Calculation.CalculateIntegral(singleCount, x => x * x * x).SingleCountsList.Last().Area;
 
                     if (Math.Round(areaValue) % z == 0 && Math.Round(areaValue) != 0)
                     {
@@ -120,13 +120,11 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
             while (true)
             {
                 SingleCount singleCount = new SingleCount(0, x2, i, areaType, 0, 1);
-                double areaValue = calculateIntegral(singleCount, x => Math.Cos(x)).SingleCountsList.Last().Area;
+                double areaValue = CalculateIntegral(singleCount, x => Math.Cos(x)).SingleCountsList.Last().Area;
                 double exactness = Math.Abs(exactValue - areaValue) / exactValue * 100;
 
-                if (exactness > z)
-                {
-                    return i.ToString();
-                }
+                if (exactness <= z) return i.ToString();
+
                 i++;
             }
         }
@@ -137,8 +135,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
             while (true)
             {
                 SingleCount singleCount = new SingleCount(x1, x2, i, areaType, 0, 1);
-                double areaValue = Calculation.calculateIntegral(singleCount, x => x * x).SingleCountsList.Last().Area;
-                if (Math.Round(areaValue) % z == 0 && Math.Round(areaValue) != 0)
+                double areaValue = Calculation.CalculateIntegral(singleCount, x => x * x).SingleCountsList.Last().Area;
+                if ((int)areaValue % z == 0 && (int)areaValue != 0)
                 {
                     return "N: " + i.ToString();
                 }
@@ -163,8 +161,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
                             {
                                 SingleCount singleCount2 = new SingleCount(b, a, n, areaType, 0, 1);
                                 SingleCount singleCount3 = new SingleCount(d, c, n, areaType, 0, 1);
-                                double areaValue2 = Calculation.calculateIntegral(singleCount2, x => x * x).SingleCountsList.Last().Area;
-                                double areaValue3 = Calculation.calculateIntegral(singleCount3, x => x * x * x).SingleCountsList.Last().Area;
+                                double areaValue2 = Calculation.CalculateIntegral(singleCount2, x => x * x).SingleCountsList.Last().Area;
+                                double areaValue3 = Calculation.CalculateIntegral(singleCount3, x => x * x * x).SingleCountsList.Last().Area;
                                 if (Math.Round(areaValue2) == Math.Round(areaValue3) || areaValue2 <= areaValue3)
                                 {
                                     return "f(X^2) - X1: " + b.ToString() + "  X2: " + a.ToString() + "     f(X^3) - X1: " + d.ToString() + "  X2: " + c.ToString();
