@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Tomasz_Gromadzki_Skutnik_Zadanie1
 {
@@ -23,7 +19,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
         public int LowestN { get; set; }
         public double MinSquareError { get; set; }
 
-        public SingleCount () { }
+        public SingleCount() { }
 
         public SingleCount(double x1, double x2, int n, AreaType areaType, double area, int calculationNumber)
         {
