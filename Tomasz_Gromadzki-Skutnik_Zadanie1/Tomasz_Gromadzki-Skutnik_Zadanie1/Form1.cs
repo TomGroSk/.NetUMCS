@@ -102,8 +102,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
 
             SingleCount singleCountRectangle = new SingleCount(x1, x2, n, AreaType.Rectangle, 0, 1);
             SingleCount singleCountTrapezoid = new SingleCount(x1, x2, n, AreaType.Trapezoid, 0, 1);
-            Global globalRectangleValue = Calculation.CalculateIntegral(singleCountRectangle, x => x * x);
-            Global globalTrapezoidValue = Calculation.CalculateIntegral(singleCountTrapezoid, x => x * x);
+            Global globalRectangleValue = Calculation.CalculateIntegralFull(singleCountRectangle, x => x * x);
+            Global globalTrapezoidValue = Calculation.CalculateIntegralFull(singleCountTrapezoid, x => x * x);
 
             for (int i = 0; i < n; i++)
             {

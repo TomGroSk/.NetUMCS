@@ -25,6 +25,28 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
             {
                 singleCount.CalculationNumber = i;
                 singleCount = SingleCalculation(singleCount, func);
+            }
+
+            if (singleCount.AreaType == AreaType.Trapezoid)
+            {
+                singleCount.Area += (func(singleCount.X1) + func(singleCount.X2)) / 2;
+            }
+
+            singleCount.Area *= dx;
+
+            singleCountsList.Add(singleCount);
+            return new Global(singleCountsList);
+        }
+
+        public static Global CalculateIntegralFull(SingleCount singleCount, Func<double, double> func)
+        {
+            List<SingleCount> singleCountsList = new List<SingleCount>();
+            double dx = (singleCount.X2 - singleCount.X1) / singleCount.N;
+
+            for (int i = 0; i < singleCount.N; i++)
+            {
+                singleCount.CalculationNumber = i;
+                singleCount = SingleCalculation(singleCount, func);
                 singleCountsList.Add(singleCount);
             }
 
@@ -111,7 +133,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
                     }
                 }
             }
-            return "X1: NaN   X2: NaN";
+            return "X1: 0   X2: 0";
         }
 
         public static string FindFirstN(double x2, double z, double exactValue, AreaType areaType)
@@ -163,7 +185,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1.Model
                                 SingleCount singleCount3 = new SingleCount(d, c, n, areaType, 0, 1);
                                 double areaValue2 = Calculation.CalculateIntegral(singleCount2, x => x * x).SingleCountsList.Last().Area;
                                 double areaValue3 = Calculation.CalculateIntegral(singleCount3, x => x * x * x).SingleCountsList.Last().Area;
-                                if (Math.Round(areaValue2) == Math.Round(areaValue3) || areaValue2 <= areaValue3)
+                                if (Math.Round(areaValue2, 1) == Math.Round(areaValue3, 1) || areaValue2 <= areaValue3)
                                 {
                                     return "f(X^2) - X1: " + b.ToString() + "  X2: " + a.ToString() + "     f(X^3) - X1: " + d.ToString() + "  X2: " + c.ToString();
                                 }
