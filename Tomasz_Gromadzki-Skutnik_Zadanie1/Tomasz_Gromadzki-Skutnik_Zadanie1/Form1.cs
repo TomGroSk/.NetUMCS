@@ -59,6 +59,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             List<string> globalData = new List<string>();
             try
             {
+                validateInput(Double.MaxValue, text1);
+                validatePercentage(text2);
                 double m = double.Parse(text1);
                 double z = double.Parse(text2);
                 double exactValue = Math.Pow(100, 3) / 3.0;
@@ -86,6 +88,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             List<string> globalData = new List<string>();
             try
             {
+                validatePercentage(text);
                 double z = double.Parse(text);
                 Random random = new Random();
                 double exactValue = Math.Pow(100, 4) / 4.0;
@@ -107,14 +110,15 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            List<string> finalData = new List<string>();
             string text1 = textBox4.Text;
             string text2 = textBox5.Text;
-            double x1 = double.Parse(text1);
-            double x2 = double.Parse(text2);
-            List<string> finalData = new List<string>();
             Random random = new Random();
             try
             {
+                validateInput(Double.MaxValue, text1, text2);
+                double x1 = double.Parse(text1);
+                double x2 = double.Parse(text2);
                 int n = random.Next(10, 1000000);
                 double tempResult = 0;
 
@@ -149,6 +153,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
 
             try
             {
+                validateInput(Double.MaxValue, text1, text2, text3);
+                validateInput(20, text4);
                 double z = double.Parse(text3);
                 int n = (int)Math.Pow(10, int.Parse(text4));
                 double x1 = double.Parse(text2);
@@ -173,6 +179,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             List<string> globalTrapezoid = new List<string>();   
             try
             {
+                validateInput(20, text1);
                 int n = (int)Math.Pow(10, int.Parse(text1));
                 globalRectangle.Add("Rectangle:");
                 globalTrapezoid.Add("Trapezoid:");
@@ -198,6 +205,8 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             List<string> globalData = new List<string>();
             try
             {
+                validateInput(Double.MaxValue, text1);
+                validateInput(20, text2);
                 int m = int.Parse(text1);
                 int n = (int)Math.Pow(10, int.Parse(text2));
                 globalData.Add("Rectangle:");
@@ -220,6 +229,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             List<string> globalData = new List<string>();
             try
             {
+                validateInput(Double.MaxValue, textBox16.Text, textBox15.Text, textBox13.Text);
                 double x1 = double.Parse(textBox16.Text);
                 double x2 = double.Parse(textBox15.Text);
                 double z = double.Parse(textBox13.Text);
@@ -250,6 +260,7 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             List<string> globalData = new List<string>();
             try
             {
+                validatePercentage(textBox14.Text);
                 double z = double.Parse(textBox14.Text);
                 double x2 = Math.PI / 2;
                 double exactValue = Math.Sin(x2);
@@ -265,6 +276,23 @@ namespace Tomasz_Gromadzki_Skutnik_Zadanie1
             {
                 globalData.Add("Error! Incorrect data! Please enter the correct one.");
                 listBox8.DataSource = globalData;
+            }
+        }
+
+        public void validateInput(double limit, params string[] strings)
+        {
+            foreach(string s in strings)
+            {
+                Double d = Double.Parse(s);
+                if (d < 0 || d > limit) throw new Exception();
+            }
+        }
+        public void validatePercentage(params string[] strings)
+        {
+            foreach (string s in strings)
+            {
+                Double d = Double.Parse(s);
+                if (d < 0 || d > 100) throw new Exception();
             }
         }
     }
