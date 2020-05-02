@@ -24,5 +24,27 @@ namespace Final_project.Data.Repository
             context.Technologies.Add(technology);
             context.SaveChanges();
         }
+
+        public void Update(Technology technology)
+        {
+            context.Technologies.Update(technology);
+            context.SaveChanges();
+        }
+
+        public void Delete(int Id)
+        {
+            context.Technologies.Remove(context.Technologies.Where(t => t.Id == Id).FirstOrDefault());
+            context.SaveChanges();
+        }
+
+        public Technology GetTechnology(int Id)
+        {
+            return context.Technologies.Where(t => t.Id == Id).FirstOrDefault();
+        }
+
+        internal List<Technology> GetAll()
+        {
+            return context.Technologies.ToList();
+        }
     }
 }

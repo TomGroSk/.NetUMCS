@@ -1,7 +1,6 @@
 ﻿using Final_project.Data.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Final_project.Data.Repository
 {
@@ -16,7 +15,7 @@ namespace Final_project.Data.Repository
 
         public void Create(string name)
         {
-            Type type = new Type
+            Models.Type type = new Models.Type
             {
                 Name = name
             };
@@ -24,9 +23,26 @@ namespace Final_project.Data.Repository
             context.SaveChanges();
         }
 
-        public void Update(Type type)
+        public void Update(Models.Type type)
         {
+            context.Types.Update(type);
+            context.SaveChanges();
+        }
 
+        public void Delete(int Id)
+        {
+            context.Types.Remove(context.Types.Where(t => t.Id == Id).FirstOrDefault());
+            context.SaveChanges();
+        }
+
+        public Type GetType(int Id)
+        {
+            return context.Types.Where(t => t.Id == Id).FirstOrDefault();
+        }
+
+        internal List<Models.Type> GetAll()
+        {
+            return context.Types.ToList();
         }
     }
 }

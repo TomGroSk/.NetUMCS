@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Final_project.Data.Models;
+using Final_project.Data.Repository;
 
 namespace Final_project
 {
@@ -35,6 +36,9 @@ namespace Final_project
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<TaskRepository>();
+            services.AddScoped<TechnologyRepository>();
+            services.AddScoped<TypeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

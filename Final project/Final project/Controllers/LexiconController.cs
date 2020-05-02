@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Final_project.Data.Models;
 using Final_project.Data.Repository;
+using Final_project.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_project.Controllers
@@ -22,36 +21,100 @@ namespace Final_project.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            LexiconModel lexiconModel = new LexiconModel();
+            lexiconModel.Technologies = technologyRepository.GetAll();
+            lexiconModel.Tasks = taskRepository.GetAll();
+            lexiconModel.Types = typeRepository.GetAll();
+
+            return View(lexiconModel);
         }
 
         [HttpPost]
-        public IActionResult CreateTask(string name)
+        public IActionResult CreateTask(LexiconModel lexiconModel)
         {
-            taskRepository.Create(name);
-            return View("Index");
+            if ((!string.IsNullOrEmpty(lexiconModel.CreateName)) &&
+                !taskRepository.GetAll().Where(t => t.Name == lexiconModel.CreateName).Any())
+            {
+                taskRepository.Create(lexiconModel.CreateName);
+            }
+            
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult CreateTechnology(string name)
+        public IActionResult CreateTechnology(LexiconModel lexiconModel)
         {
-            technologyRepository.Create(name);
-            return View("Index");
+            if ((!string.IsNullOrEmpty(lexiconModel.CreateName)) &&
+                !technologyRepository.GetAll().Where(t => t.Name == lexiconModel.CreateName).Any())
+            {
+                technologyRepository.Create(lexiconModel.CreateName);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult CreateType(string name)
+        public IActionResult CreateType(LexiconModel lexiconModel)
         {
-            typeRepository.Create(name);
-            return View("Index");
+            if ((!string.IsNullOrEmpty(lexiconModel.CreateName)) && 
+                !typeRepository.GetAll().Where(t => t.Name == lexiconModel.CreateName).Any())
+            {
+                typeRepository.Create(lexiconModel.CreateName);
+            }
+            return RedirectToAction("Index");
         }
-    
-    
-        
-    
-    
-    
-    
-    
+
+        public IActionResult DeleteTask(int Id)
+        {
+            taskRepository.Delete(Id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteTechnology(int Id)
+        {
+            technologyRepository.Delete(Id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteType(int Id)
+        {
+            typeRepository.Delete(Id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult EditTask(int Id)
+        {
+            return View(taskRepository.GetTask(Id));
+        }
+
+        public IActionResult EditTechnology(int Id)
+        {
+            return View(technologyRepository.GetTechnology(Id));
+        }
+
+        public IActionResult EditType(int Id)
+        {
+            return View(typeRepository.GetType(Id));
+        }
+
+        [HttpPost]
+        public IActionResult EditTask(Task task)
+        {
+            taskRepository.Update(task);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult EditTechnology(Technology technology)
+        {
+            technologyRepository.Update(technology);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult EditType(Type type)
+        {
+            typeRepository.Update(type);
+            return RedirectToAction("Index");
+        }
     }
 }
