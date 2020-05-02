@@ -6,10 +6,8 @@
         <div class="row">
             <div class="col-sm">
                 <form method="post" asp-action="CreateTechnology">
-                    <div class="form-group" style="display: inline-flex">
+                    <div class="form-group" style="display:flex">
                         <input class="form-control" asp-for="@Model.CreateName" />
-                    </div>
-                    <div class="form-group" style="display: inline-flex">
                         <input type="submit" value="+" class="btn btn-dark" />
                     </div>
                 </form>
@@ -37,10 +35,8 @@
             </div>
             <div class="col-sm">
                 <form method="post" asp-action="CreateTask">
-                    <div class="form-group" style="display: inline-flex">
+                    <div class="form-group" style="display:flex">
                         <input class="form-control" asp-for="@Model.CreateName" />
-                    </div>
-                    <div class="form-group" style="display: inline-flex">
                         <input type="submit" value="+" class="btn btn-dark" />
                     </div>
                 </form>
@@ -67,16 +63,12 @@
                 </table>
             </div>
             <div class="col-sm">
-                <div style="width: 100%">
-                    <form method="post" asp-action="CreateType">
-                        <div class="form-group" style="display: inline-flex">
-                            <input class="form-control" asp-for="@Model.CreateName" />
-                        </div>
-                        <div class="form-group" style="display: inline-flex">
-                            <input type="submit" value="+" class="btn btn-dark" />
-                        </div>
-                    </form>
-                </div>
+                <form method="post" asp-action="CreateType">
+                    <div class="form-group" style="display:flex">
+                        <input class="form-control" asp-for="@Model.CreateName" />
+                        <input type="submit" value="+" class="btn btn-dark" />
+                    </div>
+                </form>
                 <table class="table table-dark">
                     <thead>
                         <tr>

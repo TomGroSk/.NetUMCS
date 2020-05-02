@@ -2,10 +2,12 @@
 using Final_project.Data.Models;
 using Final_project.Data.Repository;
 using Final_project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Final_project.Controllers
 {
+    [Authorize]
     public class LexiconController : Controller
     {
         private readonly TaskRepository taskRepository;
