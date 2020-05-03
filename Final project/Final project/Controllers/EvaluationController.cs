@@ -7,6 +7,7 @@ using Final_project.Data.Repository;
 using Final_project.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Final_project.Controllers
 {
@@ -14,12 +15,23 @@ namespace Final_project.Controllers
     {
         private readonly EvaluationRepository evaluationRepository;
         private readonly EstimatedTaskRepository estimatedTaskRepository;
+        private readonly TaskRepository taskRepository;
+        private readonly TechnologyRepository technologyRepository;
+        private readonly TypeRepository typeRepository;
         private readonly UserManager<User> userManager;
 
-        public EvaluationController(EvaluationRepository evaluationRepository, EstimatedTaskRepository estimatedTaskRepository, UserManager<User> userManager)
+        public EvaluationController(EvaluationRepository evaluationRepository,
+            EstimatedTaskRepository estimatedTaskRepository,
+            TaskRepository taskRepository,
+            TechnologyRepository technologyRepository,
+            TypeRepository typeRepository,
+            UserManager<User> userManager)
         {
             this.evaluationRepository = evaluationRepository;
             this.estimatedTaskRepository = estimatedTaskRepository;
+            this.taskRepository = taskRepository;
+            this.technologyRepository = technologyRepository;
+            this.typeRepository = typeRepository;
             this.userManager = userManager;
         }
 
@@ -85,11 +97,18 @@ namespace Final_project.Controllers
 
         public IActionResult CreateEstimatedTask(int Id)
         {
-            return View();
+            EstimatedTaskModel estimatedTaskModel = new EstimatedTaskModel()
+            {
+                Technologies = technologyRepository.GetAll().Select(t => new SelectListItem(t.Name, t.Id.ToString())).ToList(),
+                Types = typeRepository.GetAll().Select(t => new SelectListItem(t.Name, t.Id.ToString())).ToList(),
+                Tasks = taskRepository.GetAll().Select(t => new SelectListItem(t.Name, t.Id.ToString())).ToList()
+            };
+            
+            return View(estimatedTaskModel);
         }
 
         [HttpPost]
-        public IActionResult CreateEstimatedTask(EstimatedTask estimatedTask)
+        public IActionResult CreateEstimatedTask(EstimatedTaskModel estimatedTaskModel)
         {
             if (!HttpContext.Request.Path.HasValue)
             {
@@ -99,9 +118,16 @@ namespace Final_project.Controllers
             {
                 return RedirectToAction("Index");
             }
-            Evaluation evaluation = evaluationRepository.GetEvaluation(evaluationId);
-            estimatedTask.Evaluation = evaluation;
-            estimatedTask.Id = 0;
+            EstimatedTask estimatedTask = new EstimatedTask()
+            {
+                Task = taskRepository.GetTask(int.Parse(estimatedTaskModel.Task)),
+                Type = typeRepository.GetType(int.Parse(estimatedTaskModel.Type)),
+                Technology = technologyRepository.GetTechnology(int.Parse(estimatedTaskModel.Technology)),
+                BurntHours = estimatedTaskModel.BurntHours,
+                EstimatedHours = estimatedTaskModel.EstimatedHours,
+                IsCompleted = estimatedTaskModel.IsCompleted,
+                Evaluation = evaluationRepository.GetEvaluation(evaluationId)
+            };
 
             estimatedTaskRepository.Add(estimatedTask);
             return RedirectToAction("Index");
