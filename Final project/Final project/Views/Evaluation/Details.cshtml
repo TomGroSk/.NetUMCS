@@ -1,0 +1,95 @@
+﻿@model Final_project.Models.EvaluationModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <h4>EvaluationModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Risk)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Risk)
+        </dd>
+    </dl>
+</div>
+
+<hr />
+
+<a class="btn btn-primary" asp-action="CreateEstimatedTask" asp-route-id="@Model.Id">New</a>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Completed
+                </th>
+                <th>
+                    Technology
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Task
+                </th>
+                <th>
+                    Estimated Hours
+                </th>
+                <th>
+                    Burnt Hours
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.EstimatedTasks)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Technology.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Task.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimatedHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BurntHours)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

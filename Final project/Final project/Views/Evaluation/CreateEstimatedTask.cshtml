@@ -1,0 +1,41 @@
+﻿@model Final_project.Data.Models.EstimatedTask
+@using Final_project.Data.Models
+@{
+    ViewData["Title"] = "CreateEstimatedTask";
+    Model.Evaluation = ViewData["Evaluation"] as Evaluation;
+}
+
+<h1>CreateEstimatedTask</h1>
+
+<h4>EstimatedTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEstimatedTask">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstimatedHours" class="control-label"></label>
+                <input asp-for="EstimatedHours" class="form-control" />
+                <span asp-validation-for="EstimatedHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BurntHours" class="control-label"></label>
+                <input asp-for="BurntHours" class="form-control" />
+                <span asp-validation-for="BurntHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

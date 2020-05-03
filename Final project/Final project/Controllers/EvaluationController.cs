@@ -13,11 +13,13 @@ namespace Final_project.Controllers
     public class EvaluationController : Controller
     {
         private readonly EvaluationRepository evaluationRepository;
+        private readonly EstimatedTaskRepository estimatedTaskRepository;
         private readonly UserManager<User> userManager;
 
-        public EvaluationController(EvaluationRepository evaluationRepository, UserManager<User> userManager)
+        public EvaluationController(EvaluationRepository evaluationRepository, EstimatedTaskRepository estimatedTaskRepository, UserManager<User> userManager)
         {
             this.evaluationRepository = evaluationRepository;
+            this.estimatedTaskRepository = estimatedTaskRepository;
             this.userManager = userManager;
         }
 
@@ -62,10 +64,39 @@ namespace Final_project.Controllers
 
         public IActionResult Delete(int Id)
         {
-
             evaluationRepository.Delete(Id);
             return RedirectToAction("Index");
         }
-        
+
+        public IActionResult Details(int Id)
+        {
+            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
+            EvaluationModel evaluationModel = new EvaluationModel()
+            {
+                ProjectName = evaluation.ProjectName,
+                UserName = evaluation.User.UserName,
+                Date = evaluation.Date,
+                Risk = evaluation.Risk,
+                Id = evaluation.Id,
+                EstimatedTasks = evaluation.EstimatedTask
+            };
+            return View(evaluationModel);
+        }
+
+        public IActionResult CreateEstimatedTask(int Id)
+        {
+            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
+            ViewData["Evaluation"] = evaluation;
+            EstimatedTask estimatedTask = new EstimatedTask();
+            return View(estimatedTask);
+        }
+
+        [HttpPost]
+        public IActionResult CreateEstimatedTask(EstimatedTask estimatedTask)
+        {
+            estimatedTaskRepository.Add(estimatedTask);
+            return RedirectToAction("Index");
+        }
+
     }
 }
