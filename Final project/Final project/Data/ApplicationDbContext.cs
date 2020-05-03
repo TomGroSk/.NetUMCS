@@ -4,6 +4,7 @@ using System.Text;
 using Final_project.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Final_project.Models;
 
 namespace Final_project.Data
 {
@@ -20,6 +21,8 @@ namespace Final_project.Data
         {
 
         }
+
+        public DbSet<Final_project.Models.EvaluationModel> EvaluationModel { get; set; }
 
 
     }

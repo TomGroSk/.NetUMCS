@@ -39,6 +39,8 @@ namespace Final_project
             services.AddScoped<TaskRepository>();
             services.AddScoped<TechnologyRepository>();
             services.AddScoped<TypeRepository>();
+            services.AddScoped<EstimatedTaskRepository>();
+            services.AddScoped<EvaluationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

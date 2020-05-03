@@ -18,12 +18,12 @@ namespace Final_project.Data.Repository
 
         public Evaluation GetEvaluation(int Id)
         {
-            return context.Evaluations
+            return context.Evaluations.Where(t => t.Id == Id)
                 .Include(e => e.User)
                 .Include(e => e.EstimatedTask).ThenInclude(e => e.Task)
                 .Include(e => e.EstimatedTask).ThenInclude(e => e.Technology)
                 .Include(e => e.EstimatedTask).ThenInclude(e => e.Type)
-                .Where(t => t.Id == Id).FirstOrDefault();
+                .FirstOrDefault();
         }
 
         public List<Evaluation> GetAllEvaluations()

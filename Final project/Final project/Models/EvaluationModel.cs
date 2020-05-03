@@ -8,6 +8,7 @@ namespace Final_project.Models
 {
     public class EvaluationModel
     {
+        public int Id { get; set; }
         public string ProjectName { get; set; }
         public string UserName { get; set; }
         public DateTime Date { get; set; }

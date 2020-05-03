@@ -14,5 +14,6 @@ namespace Final_project.Data.Models
         public bool IsCompleted { get; set; }
         public int EstimatedHours { get; set; }
         public int BurntHours { get; set; }
+        public Evaluation Evaluation { get; set; }
     }
 }

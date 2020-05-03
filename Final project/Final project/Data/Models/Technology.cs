@@ -9,5 +9,6 @@ namespace Final_project.Data.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<EstimatedTask> EstimatedTask { get; set; }
     }
 }
