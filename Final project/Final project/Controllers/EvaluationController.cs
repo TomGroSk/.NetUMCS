@@ -85,16 +85,31 @@ namespace Final_project.Controllers
 
         public IActionResult CreateEstimatedTask(int Id)
         {
-            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
-            ViewData["Evaluation"] = evaluation;
-            EstimatedTask estimatedTask = new EstimatedTask();
-            return View(estimatedTask);
+            return View();
         }
 
         [HttpPost]
         public IActionResult CreateEstimatedTask(EstimatedTask estimatedTask)
         {
+            if (!HttpContext.Request.Path.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+            if(!int.TryParse(HttpContext.Request.Path.Value.Split('/')[^1], out int evaluationId))
+            {
+                return RedirectToAction("Index");
+            }
+            Evaluation evaluation = evaluationRepository.GetEvaluation(evaluationId);
+            estimatedTask.Evaluation = evaluation;
+            estimatedTask.Id = 0;
+
             estimatedTaskRepository.Add(estimatedTask);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteEstimatedTask(int Id)
+        {
+            estimatedTaskRepository.Delete(Id);
             return RedirectToAction("Index");
         }
 

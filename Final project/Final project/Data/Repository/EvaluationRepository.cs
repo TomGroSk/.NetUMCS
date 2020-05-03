@@ -33,13 +33,14 @@ namespace Final_project.Data.Repository
 
         public void Add(Evaluation Evaluation)
         {
-            context.Add(Evaluation);
+            context.Evaluations.Add(Evaluation);
             context.SaveChanges();
         }
 
         public void Delete(int Id)
         {
-            context.Remove(GetEvaluation(Id));
+
+            context.Evaluations.Remove(GetEvaluation(Id));
             context.SaveChanges();
         }
     }

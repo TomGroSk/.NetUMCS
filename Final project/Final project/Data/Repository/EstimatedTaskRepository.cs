@@ -15,9 +15,19 @@ namespace Final_project.Data.Repository
             this.context = context;
         }
 
+        public EstimatedTask GetEstimatedTask(int Id)
+        {
+            return context.EstimatedTasks.Where(e => e.Id == Id).FirstOrDefault();
+        }
+
         public void Add(EstimatedTask estimatedTask)
         {
             context.Add(estimatedTask);
+            context.SaveChanges();
+        }
+        public void Delete(int Id)
+        {
+            context.EstimatedTasks.Remove(GetEstimatedTask(Id));
             context.SaveChanges();
         }
     }
