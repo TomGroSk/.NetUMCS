@@ -8,6 +8,7 @@ namespace Final_project.Models
 {
     public class EstimatedTaskModel
     {
+        public int Id { get; set; }
         public bool IsCompleted { get; set; }
         public int EstimatedHours { get; set; }
         public int BurntHours { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Final_project.Data.Models;
 using Final_project.Data.Repository;
 using Final_project.Models;
@@ -137,6 +138,73 @@ namespace Final_project.Controllers
         {
             estimatedTaskRepository.Delete(Id);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult EditEstimatedTask(int Id)
+        {
+            EstimatedTask estimatedTask = estimatedTaskRepository.GetEstimatedTask(Id);
+            EstimatedTaskModel estimatedTaskModel = new EstimatedTaskModel()
+            {
+                Id = estimatedTask.Id,
+                Technologies = technologyRepository.GetAll().Select(t => new SelectListItem(t.Name, t.Id.ToString())).ToList(),
+                Types = typeRepository.GetAll().Select(t => new SelectListItem(t.Name, t.Id.ToString())).ToList(),
+                Tasks = taskRepository.GetAll().Select(t => new SelectListItem(t.Name, t.Id.ToString())).ToList(),
+                Task = estimatedTask.Task.Id.ToString(),
+                Technology = estimatedTask.Technology.Id.ToString(),
+                Type = estimatedTask.Type.Id.ToString(),
+                BurntHours = estimatedTask.BurntHours,
+                EstimatedHours = estimatedTask.EstimatedHours,
+                IsCompleted = estimatedTask.IsCompleted
+            };
+            
+            return View(estimatedTaskModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditEstimatedTask(EstimatedTaskModel estimatedTaskModel)
+        {
+            EstimatedTask estimatedTask = new EstimatedTask()
+            {
+                Id = estimatedTaskModel.Id,
+                Task = taskRepository.GetTask(int.Parse(estimatedTaskModel.Task)),
+                Type = typeRepository.GetType(int.Parse(estimatedTaskModel.Type)),
+                Technology = technologyRepository.GetTechnology(int.Parse(estimatedTaskModel.Technology)),
+                BurntHours = estimatedTaskModel.BurntHours,
+                EstimatedHours = estimatedTaskModel.EstimatedHours,
+                IsCompleted = estimatedTaskModel.IsCompleted
+
+            };
+            estimatedTaskRepository.Update(estimatedTask);
+            return RedirectToAction("Index");
+        }
+
+        public String GetXML(int Id)
+        {
+            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
+            using (var stringwriter = new System.IO.StringWriter())
+            {
+                var serializer = new XmlSerializer(evaluation.GetType());
+                serializer.Serialize(stringwriter, evaluation);
+                return stringwriter.ToString();
+            }
+        }
+
+        public String GetDOC(int Id)
+        {
+            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
+            return evaluation.ToString();
+        }
+
+        public String GetPDF(int Id)
+        {
+            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
+            return evaluation.ToString();
+        }
+
+        public String GetCSV(int Id)
+        {
+            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
+            return evaluation.ToString();
         }
 
     }

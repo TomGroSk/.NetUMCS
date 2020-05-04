@@ -37,6 +37,16 @@
 <hr />
 
 <a class="btn btn-primary" asp-action="CreateEstimatedTask" asp-route-id="@Model.Id">New</a>
+<div class="btn-group">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Export
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" asp-action="GetXML" asp-route-id="@Model.Id">XML</a>
+        <a class="dropdown-item" href="javascript:window.print()">PDF</a>
+        <a class="dropdown-item" asp-action="GetCSV" asp-route-id="@Model.Id">CSV</a>
+    </div>
+</div>
 
 <div>
     <table class="table">
@@ -58,7 +68,7 @@
                     Estimated Hours
                 </th>
                 <th>
-                    Burnt Hours
+                    Cost per hour
                 </th>
                 <th></th>
             </tr>
@@ -87,6 +97,9 @@
                 </td>
                 <td>
                     <a asp-action="DeleteEstimatedTask" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a asp-action="EditEstimatedTask" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                 </td>
             </tr>
             }
