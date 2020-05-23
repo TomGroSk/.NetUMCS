@@ -40,23 +40,27 @@ namespace Final_project.Controllers
         {
             List<Evaluation> evaluations = evaluationRepository.GetAllEvaluations();
             List<EvaluationModel> evaluationModels = new List<EvaluationModel>();
-            foreach(var e in evaluations)
+            string userName = this.User.Identity.Name;
+
+            foreach (var e in evaluations)
             {
-                evaluationModels.Add(new EvaluationModel()
+                if (e.User.UserName == userName)
                 {
-                    ProjectName = e.ProjectName,
-                    UserName = e.User.UserName,
-                    Date = e.Date,
-                    Risk = e.Risk,
-                    Id = e.Id
-                });
+                    evaluationModels.Add(new EvaluationModel()
+                    {
+                        ProjectName = e.ProjectName,
+                        UserName = e.User.UserName,
+                        Date = e.Date,
+                        Risk = e.Risk,
+                        Id = e.Id
+                    });
+                }
             }
             return View(evaluationModels);
         }
 
         public IActionResult CreateEvaluation()
         {
-
             return View();
         }
 
@@ -189,23 +193,12 @@ namespace Final_project.Controllers
             }
         }
 
-        public String GetDOC(int Id)
-        {
-            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
-            return evaluation.ToString();
-        }
-
         public String GetPDF(int Id)
         {
             Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
             return evaluation.ToString();
         }
 
-        public String GetCSV(int Id)
-        {
-            Evaluation evaluation = evaluationRepository.GetEvaluation(Id);
-            return evaluation.ToString();
-        }
 
     }
 }
